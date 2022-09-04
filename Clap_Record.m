@@ -1,0 +1,15 @@
+clc;
+clear;
+close all;
+warning off;
+Fs=4000;
+ch=1;
+datatype='uint8';
+nbits=16;
+Nseconds=3;
+recorder=audiorecorder(Fs,nbits,ch);
+disp('Start speaking..');
+recordblocking(recorder,Nseconds);
+disp('End of recording.');
+x=getaudiodata(recorder,datatype);
+audiowrite('test.wav',x,Fs);
